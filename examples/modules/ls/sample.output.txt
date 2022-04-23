@@ -1,0 +1,8 @@
+/guest.d/dir.d/.sample.sh.swp
+/guest.d/dir.d/.gitignore
+/guest.d/dir.d/src
+/guest.d/dir.d/Cargo.lock
+/guest.d/dir.d/sample.output.txt
+/guest.d/dir.d/sample.sh
+/guest.d/dir.d/Cargo.toml
+/guest.d/dir.d/target
