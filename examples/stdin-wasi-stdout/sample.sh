@@ -13,9 +13,15 @@ filter_wasmtime(){
 	  ../modules/string-filter/target/wasm32-wasi/release/string-filter.wasm
 }
 
+linecount_wasmtime(){
+	wasmtime run \
+	  ../modules/wc/target/wasm32-wasi/release/wc.wasm
+}
+
 run_wasmtime_pipe(){
 	ls_wasmtime |
-	  filter_wasmtime
+	  filter_wasmtime |
+	  linecount_wasmtime
 }
 
 run(){
