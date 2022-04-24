@@ -24,8 +24,13 @@ run_wasmtime_pipe(){
 	  linecount_wasmtime
 }
 
+run_wasmtime(){
+	cat /dev/null |
+	  ./target/release/stdin-wasi-stdout
+}
+
 run(){
-	run_wasmtime_pipe
+	run_wasmtime
 }
 
 run

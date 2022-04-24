@@ -1,0 +1,3 @@
+{"module_path":"ls.wasm", "env":[{"key":"ENV_DIR", "val":"/log.d"}], "map":[{"host":"/var/log", "guest":"/log.d"}]}
+{"module_path":"string-filter.wasm", "env":[{"key":"ENV_START","val":"/log.d/syslog"}], "map":[]}
+{"module_path":"wc.wasm", "env":[], "map":[]}
