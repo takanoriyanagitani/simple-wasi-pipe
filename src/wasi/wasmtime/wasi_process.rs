@@ -68,7 +68,7 @@ fn ctx_run(ctx: WasiCtx, e: &Engine, m: &Module, l: &Linker<WasiCtx>) -> Result<
         .instantiate(&mut s, m)
         .map_err(|e| format!("Unable to get an instance: {}", e))?;
     let main = i
-        .get_typed_func::<(), (), _>(&mut s, "_start")
+        .get_typed_func::<(), ()>(&mut s, "_start")
         .map_err(|e| format!("No entry point: {}", e))?;
     main.call(&mut s, ())
         .map_err(|e| format!("Unable to call main: {}", e))
