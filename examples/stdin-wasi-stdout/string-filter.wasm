@@ -1,1 +1,1 @@
-../modules/string-filter/target/wasm32-wasi/release/string-filter.wasm
+../modules/string-filter/string-filter.wasm

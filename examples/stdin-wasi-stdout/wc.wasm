@@ -1,1 +1,1 @@
-../modules/wc/target/wasm32-wasi/release/wc.wasm
+../modules/wc/wc.wasm
