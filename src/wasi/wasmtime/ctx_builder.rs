@@ -99,7 +99,7 @@ impl StaticContextBuilder {
 }
 impl CtxBuilder for StaticContextBuilder {
     fn build(&self) -> Result<WasiCtx, String> {
-        let bldr = new_builder_from_sources(self, self)?;
+        let mut bldr = new_builder_from_sources(self, self)?;
         let host_stderr_used = bldr.inherit_stderr();
         Ok(host_stderr_used.build())
     }
@@ -143,14 +143,13 @@ impl DirCtxBuilder {
         Self { b }
     }
 
-    pub fn map_dir(self, host: &Path, guest: &Path) -> Result<Self, String> {
+    pub fn map_dir(mut self, host: &Path, guest: &Path) -> Result<Self, String> {
         let f = File::open(host).map_err(|e| format!("Unable to open host dir: {}", e))?;
         let d = Dir::from_std_file(f);
-        let neo = self
-            .b
+        self.b
             .preopened_dir(d, guest)
             .map_err(|e| format!("Unable to map dir: {}", e))?;
-        Ok(Self::from(neo))
+        Ok(Self::from(self.b))
     }
 
     fn with_dir_source<S>(self, s: &S) -> Result<Self, String>
@@ -201,12 +200,11 @@ impl EnvCtxBuilder {
         Self { b }
     }
 
-    pub fn set_env(self, key: &str, val: &str) -> Result<Self, String> {
-        let neo = self
-            .b
+    pub fn set_env(mut self, key: &str, val: &str) -> Result<Self, String> {
+        self.b
             .env(key, val)
             .map_err(|e| format!("Unable to set env: {}", e))?;
-        Ok(Self::from(neo))
+        Ok(Self::from(self.b))
     }
 
     fn consume_env_source<S>(self, s: &S) -> Result<Self, String>

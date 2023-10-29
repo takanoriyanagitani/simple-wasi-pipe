@@ -40,7 +40,7 @@ where
     }
 }
 
-fn ctx_process<F>(mut ctx: WasiCtx, i: &[u8], o: &mut Vec<u8>, f: F) -> Result<(), String>
+fn ctx_process<F>(ctx: WasiCtx, i: &[u8], o: &mut Vec<u8>, f: F) -> Result<(), String>
 where
     F: Fn(WasiCtx) -> Result<(), String>,
 {
